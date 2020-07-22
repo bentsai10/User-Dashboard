@@ -33,7 +33,10 @@ def process_register(request):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/register')
+            if request.POST['route'] == 'register':
+                return redirect('/register')
+            else:
+                return redirect('/users/new')
         else:
             if User.objects.all().count() == 0:
                 admin_level = 9
@@ -54,14 +57,14 @@ def register(request):
     return render(request, 'register.html')
 
 def dashboard(request):
-    context = {
-        'current_user': User.objects.filter(email = request.session['logged_user']).all().first(),
-        'users' : User.objects.all()
-    }
-    return render(request, 'dashboard.html', context)
-
-def dash_admin(request):
-    pass
+    if 'logged_user' in request.session:
+        context = {
+            'current_user': User.objects.filter(email = request.session['logged_user']).all().first(),
+            'users' : User.objects.all()
+        }
+        return render(request, 'dashboard.html', context)
+    else:
+        return redirect('/')
 
 def logout(request):
     if 'logged_user' in request.session:

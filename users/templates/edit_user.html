@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Editing User {{user.id}}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Test App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="http://localhost:8000/dashboard">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://localhost:8000/users/edit">Edit Profile <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="http://localhost:8000/logout">Logout<span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        <div class = "container" style = "display: flex;"> 
+            <div class = "container" style = "padding: 30px;"> 
+                <h1 class = "display-4">Edit Profile</h1>
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li style = "color: red;">{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div style = "outline: 1px solid gray; width: fit-content; padding: 20px"> 
+                    <h3>Edit Information {{self.first_name}}</h3>
+                        <form action="http://localhost:8000/users/update_info" method = "POST" style = "width: fit-content;">
+                            {% csrf_token%}
+                            <label style = "display: block; margin-top: 10px;">Email Address</label>
+                            <input type="text" name="email" value = "{{self.email}}" style = "display: block; width: 400px;">
+                            <label style = "display: block; margin-top: 10px;">First Name</label>
+                            <input type="text" name="first_name" value = "{{self.first_name}}" style = "display: block; width: 400px;">
+                            <label style = "display: block; margin-top: 10px;">Last Name</label>
+                            <input type="text" name="last_name" value = "{{self.last_name}}" style = "display: block; width: 400px;">
+                            <input type="hidden" name="user" value = "{{self.email}}">
+                            {% if current_user.user_level == 9 %}
+                            <label style = "display: block; margin-top: 10px;">User Level</label>
+                            <select style = "display: block;" name="user_level">
+                                <option value="1">normal</option>
+                                <option value="9">admin</option>
+                            </select>
+                            {% endif %}
+                            <button class = "btn btn-success ml-auto" style = "display:block; margin-top: 20px;">Save</button>
+                        </form>
+                </div>
+                
+            </div>
+            <div class = "container" style = "padding: 30px;">
+                <h1 class = "display-4" style="visibility: hidden;">Edit Profile</h1>
+                <div style = "outline: 1px solid gray; width: fit-content; padding: 20px"> 
+                    <h3>Change Password</h3>
+                    <form action="http://localhost:8000/users/update_pw" method = "POST" style = "width: fit-content;">
+                        {% csrf_token%}
+                        <label style = "display: block; margin-top: 10px;">Password</label>
+                        <input type="password" name="old_password" style = "display: block; width: 400px;">
+                        <label style = "display: block; margin-top: 10px;">New Password</label>
+                        <input type="password" name="new_password" style = "display: block; width: 400px;">
+                        <label style = "display: block; margin-top: 10px;">Confirm New Password</label>
+                        <input type="password" name="new_password_conf" style = "display: block; width: 400px;">
+                        <input type="hidden" name="user" value = "{{self.email}}">
+                        <button class = "btn btn-success ml-auto" style = "display:block; margin-top: 20px;">Update Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class = "container" style = "margin-left: 125px;">
+            <div class = "container"style = "outline: 1px solid gray; padding: 30px; width: 996px;">
+                <div style = "width: 100%;">
+                    <h3>Edit Description</h3>
+                    <form action="http://localhost:8000/users/update_desc" method = "POST" style = "width: 100%;">
+                        {% csrf_token%}
+                        <textarea name="desc" style = "width: 100%; height: 5em;">{{self.desc}}</textarea>
+                        <input type="hidden" name="user" value = "{{self.email}}">
+                        <button class = "btn btn-success ml-auto" style = "display:block; margin-top: 10px;">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
