@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test Homepage</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <style>
+            .card{
+                margin-right: 20px;
+                padding: 10px;
+                border: 0px;
+            }
+                .card h2{
+                    text-align: center;
+                }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Test App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="http://localhost:8000">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="http://localhost:8000/login">Login<span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        <div class = "jumbotron" style = "width: 100%; background: lightgray; height: 50vh; margin-top: 10px; padding: 50px; text-align: center;">
+            <h1>Welcome to the Test</h1>
+            <p>We're going to build a cool application using a MVC framework!</p>
+            <a href="http://localhost:8000/login" class = "btn btn-primary">Get Started</a>
+        </div>
+        <div class = "container" style = "display:flex; margin-top: 20px;">
+            <div class = "card">
+                <h2>Manage Users</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fugit a, explicabo dignissimos sapiente saepe ea nemo architecto natus est rem culpa veritatis, officia animi dolorum facilis accusamus asperiores voluptate.</p>
+            </div>
+            <div class = "card">
+                <h2>Leave Messages</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eos, quam et quas non error itaque maiores numquam voluptatibus. Ratione distinctio est nemo rem atque laborum fugiat facere saepe ut?</p>
+            </div>
+            <div class = "card">
+                <h2>Edit User Information</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto veritatis recusandae consequuntur nam impedit itaque numquam. Et, in sunt dicta autem at aut culpa nesciunt, animi aperiam quisquam odio soluta.</p>
+            </div>
+        </div>
+    </body>
+</html>
