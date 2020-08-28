@@ -1,5 +1,5 @@
 # User Dashboard
-A user management/messaging system for school clubs to engage users!
+A user management/messaging system for school clubs or companies to engage users, members, or employees!
 
 <p align = "center"><kbd><img src = "/images/dash.png" height = "400"></kbd></p>
 
